@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>USER DASHBOARD</title>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css"> 
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+ 
+
+</head>
+<body>
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
+                <h1 class="text-center">DASHBOARD</h1>
+            </div>
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    <li class="tm-nav-item active"><a href="index.html" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Home Page
+                    </a></li>
+                    <li class="tm-nav-item active"><a href="table.html" class="tm-nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        Table
+                    </a></li>
+                    <li class="tm-nav-item"><a href="chart.html" class="tm-nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        Charts
+                    </a></li>
+                    <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Profile
+                    </a></li>
+                </ul>
+            </nav>
+    </header>
+    <div class="container-fluid">
+        <main class="tm-main">   
+            <div class="page">
+                <h1 style="color: rgb(136, 184, 177);">User Table</h1>
+                <input type="text" class="search" id="myInput" placeholder="Kullanıcı Ara...">
+                <button class="search-button" type="submit">
+                    <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                </button>  
+                <form>
+                    <input type="text" id="name" placeholder="Adınızı Giriniz">
+                    <input type="text" id="phone" placeholder="Telefon numarası giriniz">
+                    <input type="text" id="email" placeholder="E-posta Adresinizi Giriniz">
+                    <select type="text" id="country">
+                        <option> Türkiye </option>
+                        <option> Almanya </option>
+                        <option> Fransa </option>
+                        <option> İspanya </option>
+                        <option> Avusturya </option>
+                        <option> Avustralya </option> 
+                    </select>              
+                    <input type="text" id="yas" placeholder="Yaş Giriniz">
+                    <input type="button" id="add-row" value="Ekle">
+                </form>
+
+                <span class="counter"></span>
+                <div class="tablediv">
+                        <table class="table-striped" id="mytableID" style="width: 100%;">
+                            <thead>
+                            <tr>
+                                <th data-field="name">
+                                <span class="text-success">User Name</span>
+                                </th>
+                                <th data-field="phone">
+                                <span class="text-success">User Phone </span>
+                                </th>
+                                <th data-field="email">
+                                    <span class="text-success"> User Email </span>
+                                </th>
+                                <th data-field="country">
+                                    <span class="text-success"> User Country </span>
+                                </th>                
+                                <th data-field="age">
+                                    <span class="text-success"> User Age </span>
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr style="display:none;">
+                                <td colspan="8"><i class="fa fa-warning"></i> Bulunamadı</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        <button type="button" id="remove-row">Sil</button>
+                </div>        
+            </div>
+        </main>
+    </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+      
+
+        <script type="text/javascript" src="test.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+        
+            $('table').bootstrapTable({
+                data: mydata
+                
+            });
+            });
+                
+            var mydata = JSON.parse(users)
+        </script>
+        <script>
+                $(".search").keyup(function() {
+                    var searchTerm = $(".search").val();
+                    var bulunan = 0
+                    $('.table-striped tr').each(function(e) {
+                        var table = $(this)
+                        if (table.text().toLowerCase().includes(searchTerm.toLowerCase())) {
+                            bulunan += 1
+                            table.show()
+                            $(".counter").text(bulunan + " kayıt bulundu")
+                            $(".no-result").css('display', 'none')
+                        } else {
+                            table.hide()
+                            $(".counter").text(bulunan + " kayıt bulundu")
+                            if (bulunan == 0) {
+                                $(".no-result").css('display', '')
+                            }
+                        }
+                    })
+                });
+        </script>
+
+        <script>
+                $(function() {
+                const ths = $(".table-striped th");
+                let sortOrder = 1;
+
+                ths.on("click", function() {
+                    const rows = sortRows(this);
+                    rebuildTbody(rows);
+                    updateClassName(this);
+                    sortOrder *= -1; 
+                })
+
+                function sortRows(th) {
+                    const rows = $.makeArray($('tbody > tr'));
+                    const col = th.cellIndex;
+                    const type = th.dataset.type;
+                    rows.sort(function(a, b) {
+                    return compare(a, b, col, type) * sortOrder;      
+                    });
+                    return rows;
+                }
+
+                function compare(a, b, col, type) {
+                    let _a = a.children[col].textContent;
+                    let _b = b.children[col].textContent;
+                    if (type === "number") {
+                    _a *= 1;
+                    _b *= 1;
+                    } else if (type === "string") {
+                    
+                    _a = _a.toLowerCase();
+                    _b = _b.toLowerCase();
+                    }
+
+                    if (_a < _b) {
+                    return -1;
+                    }
+                    if (_a > _b) {
+                    return 1;
+                    }
+                    return 0;
+                }
+
+                function rebuildTbody(rows) {
+                    const tbody = $("tbody");
+                    while (tbody.firstChild) {
+                    tbody.remove(tbody.firstChild);
+                    }
+
+                    let j;
+                    for (j=0; j<rows.length; j++) {
+                    tbody.append(rows[j]);
+                    }
+                }
+
+                function updateClassName(th) {
+                    let k;
+                    for (k=0; k<ths.length; k++) {
+                    ths[k].className = "";
+                    }
+                    th.className = sortOrder === 1 ? "asc" : "desc";   
+                }
+                
+                });
+        </script>
+        <script>
+            
+            $(document).ready(function(){
+                $("#add-row").click(function () {
+                    var name=$("#name").val();
+                    var email=$("#email").val();
+                    var phone=$("#phone").val();
+                    var country=$("#country").val();
+                    var yas=$("#yas").val();
+                    var table="<tr><td>"+name+"</td><td>"+phone+"</td><td>"+email+"</td><td>"+country+"</td><td>"+yas+"</td><td><input type='checkbox' name='record'></td></tr>";
+                    $("table tbody").append(table);
+                    $('#name,#email,#phone,#country,#yas').val("");
+                })
+
+                $("#remove-row").click(function(){
+                $("table tbody").find('input[name="record"]').
+                    each(function()  { 
+                            if($(this).is(":checked")){
+                            $(this).parents("tr").remove();
+                        }
+                    });
+                });
+            });
+        </script>
+</body>
+</html>

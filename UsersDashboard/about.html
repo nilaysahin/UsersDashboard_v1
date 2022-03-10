@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>USER DASHBOARD</title>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css"> 
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/contact.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+
+	    var tt=new Date();
+        var ay=new Array(12);	ay[0]="Ocak";ay[1]="Şubat";ay[2]="Mart";ay[3]="Nisan";ay[4]="Mayıs";ay[5]="Haziran";ay[6]="Temmuz";ay[7]="Ağustos";ay[8]="Eylül";ay[9]="Ekim";ay[10]="Kasım";ay[11]="Aralık";
+        var gun=new Array(7);	gun[0]="Pazar";gun[1]="Pazartesi";gun[2]="Salı";gun[3]="Çarşamba";gun[4]="Perşembe";gun[5]="Cuma";gun[6]="Cumartesi";
+
+	</script>
+</head>
+<body>
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>         
+                <h1 class="text-center">DASHBOARD</h1>
+            </div>
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    <li class="tm-nav-item active"><a href="index.html" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Home Page
+                    </a></li>
+                    <li class="tm-nav-item"><a href="table.html" class="tm-nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        Table
+                    </a></li>
+                    <li class="tm-nav-item"><a href="chart.html" class="tm-nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        Charts
+                    </a></li>
+                    <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Profile
+                    </a></li>
+
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+    <div class="col-12">
+        <form method="GET" class="form-inline tm-mb-80 tm-search-form">                
+            <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+            <button class="tm-search-button" type="submit">
+                <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+            </button>                                
+        </form>
+    </div>                
+    <div class="t_menu">
+
+        <div class="t_gun"><script type="text/javascript">document.write(gun[tt.getDay()])</script></div>
+    
+        <div class="t_sayi"><script type="text/javascript">document.write(tt.getDate())</script></div>
+    
+        <div class="t_tarih"><script type="text/javascript">document.write(ay[tt.getUTCMonth()])</script>  
+            
+            <script type="text/javascript">document.write(tt.getFullYear())</script></div>
+    
+    </div>
+
+    <div class="card">
+        <img src="img.jpg" alt="Photo" style="width:100%">
+        <p class="title"></p>
+        <p></p>
+        <div id="profile-card"></div>
+
+        
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <p><button id="buton-skip">Contact</button></p>
+      </div>
+     
+
+
+        <!--<script>
+          $(function () {
+
+            $("#buton-skip").click(function(){
+                $.getJSON("usersData.json",function(data){
+
+                    var usname=data["d-user"][0]["name"];
+                    var usphone=data["d-user"][0]["phone"];
+                    var usmail=data["d-user"][0]["email"];
+                    var uscountry=data["d-user"][0]["country"];
+                    var usage=data["d-user"][0]["age"];
+
+                    $("#profile-card").html(usname);
+                    $("#profile-card").html(usphone);
+                    $("#profile-card").html(usmail);
+                    $("#profile-card").html(uscountry);
+                    $("#profile-card").html(usage);
+                });
+                
+            });
+          });
+      </script>
+          <script>
+ 
+            $("#buton-skip").click(function(){
+         
+                $("#profile-card").html('')
+                $.getJSON("usersData.json",function (data){
+                        data.forEach(function(nesne,index){
+                        var kayit=$('<h3>').text(nesne.name+" "+nesne.phone);
+                        $("#profile-card").append(kayit);  
+                    })
+                })
+            })
+         
+            </script>-->
+
+            
+      
+</body>
+</html>

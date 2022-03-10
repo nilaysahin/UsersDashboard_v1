@@ -1,0 +1,25 @@
+#pie{
+    position: relative;
+}
+#pieChartContainer{
+
+    position: relative;
+    top: 80px;
+}
+
+#donut{
+    position: relative;
+    top: 150px;
+}
+#donutChartContainer{
+    position: relative;
+    top: 150px;
+}
+#bar{
+    position: relative;
+    top: 250px;
+}
+#barChartContainer{
+    position: relative;
+    top: 300px;
+}
